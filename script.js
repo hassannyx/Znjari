@@ -326,3 +326,51 @@ function calculateResult() {
 }
 
 document.getElementById("submit-section").addEventListener("click", calculateResult);
+
+const pages = document.querySelectorAll('.question-page');
+const nextButtons = document.querySelectorAll('.next-btn');
+const submitButton = document.getElementById('submit-btn');
+const resultDiv = document.getElementById('result');
+const resultText = document.getElementById('result-text');
+
+let currentPage = 0;
+
+function showPage(index) {
+  pages.forEach((page, i) => {
+    page.classList.toggle('active', i === index);
+  });
+}
+
+nextButtons.forEach((button, index) => {
+  button.addEventListener('click', () => {
+    if (isAnswered(index + 1)) {
+      currentPage++;
+      showPage(currentPage);
+    } else {
+      alert('اختر إجابة أولاً.');
+    }
+  });
+});
+
+submitButton.addEventListener('click', () => {
+  if (isAnswered(20)) {
+    showResult();
+  } else {
+    alert('اختر إجابة أولاً.');
+  }
+});
+
+function isAnswered(qNum) {
+  const name = 'q' + qNum;
+  const selected = document.querySelector(`input[name="${name}"]:checked`);
+  return selected !== null;
+}
+
+function showResult() {
+  // تحليل عشوائي كمثال، يمكن تحسينه لاحقاً
+  const types = ['INTJ', 'INFP', 'ENFP', 'ISTP', 'INFJ', 'ENTJ', 'ISFP', 'ESFJ', 'INTP', 'ESTJ', 'ENFJ', 'ISTJ', 'ESTP', 'ISFJ', 'ENTP', 'ESFP'];
+  const randomType = types[Math.floor(Math.random() * types.length)];
+  resultText.textContent = `نمطك هو: ${randomType}`;
+  pages[currentPage].style.display = 'none';
+  resultDiv.style.display = 'block';
+}
