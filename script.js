@@ -183,6 +183,7 @@ const questions = [
 
 let currentAnswers = [];
 
+
 function createQuiz() {
     const container = document.getElementById("quiz-container");
     questions.forEach((q, index) => {
@@ -223,3 +224,34 @@ function checkIfFinished() {
 }
 
 createQuiz();
+function calculateResult() {
+    // هنا سنقوم بتخزين عدد الإجابات التي تم اختيارها لكل نوع شخصية
+    const typeCounts = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
+
+    // نقوم بجمع الإجابات التي اختارها المستخدم
+    currentAnswers.forEach(answer => {
+        typeCounts[answer]++;
+    });
+
+    // بناء نوع الشخصية بناءً على الإجابات الأكثر تكرارًا
+    let personalityType = '';
+    personalityType += typeCounts.E > typeCounts.I ? 'E' : 'I';
+    personalityType += typeCounts.S > typeCounts.N ? 'S' : 'N';
+    personalityType += typeCounts.T > typeCounts.F ? 'T' : 'F';
+    personalityType += typeCounts.J > typeCounts.P ? 'J' : 'P';
+
+    // عرض النتيجة للمستخدم
+    const resultText = `Your personality type is: ${personalityType}`;
+
+    // عرض النتيجة في صفحة الويب
+    const resultDiv = document.createElement("div");
+    resultDiv.classList.add("result");
+    resultDiv.textContent = resultText;
+
+    // استبدال الأسئلة بالنتيجة
+    document.getElementById("quiz-container").innerHTML = "";
+    document.getElementById("quiz-container").appendChild(resultDiv);
+}
+
+// ربط الوظيفة بزر "إرسال"
+document.getElementById("submit-section").onclick = calculateResult;
