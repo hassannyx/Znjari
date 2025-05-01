@@ -255,3 +255,23 @@ function calculateResult() {
 
 // ربط الوظيفة بزر "إرسال"
 document.getElementById("submit-section").onclick = calculateResult;
+// دالة لفحص الإجابات
+function checkAnswers() {
+    let allAnswered = true;
+    // تأكد من أن المستخدم أجاب على جميع الأسئلة
+    let answers = document.querySelectorAll('input[type="radio"]:checked');
+    if (answers.length < 20) {
+        allAnswered = false;
+    }
+
+    // إذا أجاب المستخدم على جميع الأسئلة، قم بإظهار الزر
+    if (allAnswered) {
+        document.getElementById("submit-section").style.display = "block";
+    }
+}
+
+// استدعاء الدالة عند تغيير الإجابة
+let allAnswers = document.querySelectorAll('input[type="radio"]');
+allAnswers.forEach(answer => {
+    answer.addEventListener('change', checkAnswers);
+});
