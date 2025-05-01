@@ -275,3 +275,22 @@ let allAnswers = document.querySelectorAll('input[type="radio"]');
 allAnswers.forEach(answer => {
     answer.addEventListener('change', checkAnswers);
 });
+
+// دالة لحساب النتيجة
+function calculateResult() {
+    let score = 0;
+
+    // اختر جميع الإجابات
+    let answers = document.querySelectorAll('input[type="radio"]:checked');
+    
+    // افترض أن كل إجابة صحيحة تمنحك نقطة واحدة
+    answers.forEach(answer => {
+        score += parseInt(answer.value); // إضافة النقاط بناءً على الإجابة
+    });
+
+    // عرض النتيجة
+    alert("Your total score is: " + score);
+}
+
+// ربط الزر مع الدالة لحساب النتيجة
+document.getElementById("submit-section").addEventListener("click", calculateResult);
