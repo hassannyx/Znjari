@@ -33,3 +33,61 @@ a:hover {
     background-color: #45a049;
     color: white;
 }
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 1.2rem;
+  margin: 0;
+  padding: 0;
+}
+
+#quiz-header {
+  background-color: #111;
+  text-align: center;
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 2px solid #333;
+}
+
+#quiz-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #fff;
+}
+
+#quiz-container {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.question-page {
+  display: none;
+  width: 100%;
+  max-width: 600px;
+}
+
+.question-page.active {
+  display: block;
+}
+
+label {
+  display: block;
+  margin: 10px 0;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
