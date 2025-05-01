@@ -294,3 +294,35 @@ function calculateResult() {
 
 // ربط الزر مع الدالة لحساب النتيجة
 document.getElementById("submit-section").addEventListener("click", calculateResult);
+
+function calculateResult() {
+    let score = 0;
+    let answers = document.querySelectorAll('input[type="radio"]:checked');
+
+    answers.forEach(answer => {
+        score += parseInt(answer.value);
+    });
+
+    let personalityType = "";
+
+    if (score >= 94) personalityType = "INTJ";
+    else if (score >= 88) personalityType = "INTP";
+    else if (score >= 82) personalityType = "INFJ";
+    else if (score >= 76) personalityType = "INFP";
+    else if (score >= 70) personalityType = "ISTJ";
+    else if (score >= 64) personalityType = "ISTP";
+    else if (score >= 58) personalityType = "ISFJ";
+    else if (score >= 52) personalityType = "ISFP";
+    else if (score >= 46) personalityType = "ENTJ";
+    else if (score >= 40) personalityType = "ENTP";
+    else if (score >= 34) personalityType = "ENFJ";
+    else if (score >= 28) personalityType = "ENFP";
+    else if (score >= 22) personalityType = "ESTJ";
+    else if (score >= 16) personalityType = "ESTP";
+    else if (score >= 10) personalityType = "ESFJ";
+    else personalityType = "ESFP";
+
+    alert("Your personality type is: " + personalityType);
+}
+
+document.getElementById("submit-section").addEventListener("click", calculateResult);
